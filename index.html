@@ -545,6 +545,7 @@
         .contact-card:nth-child(2) { animation-delay: 0.2s; }
         .contact-card:nth-child(3) { animation-delay: 0.3s; }
         .contact-card:nth-child(4) { animation-delay: 0.4s; }
+        .contact-card:nth-child(5) { animation-delay: 0.5s; }
 
         .contact-card:hover {
             transform: translateY(-5px);
@@ -579,6 +580,23 @@
 
         .contact-card a:hover {
             color: #38bdf8;
+        }
+
+        /* Estilo para o número com ícone de cópia */
+        .phone-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .copy-icon {
+            cursor: pointer;
+            color: #38bdf8;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        .copy-icon:hover {
+            color: #818cf8;
         }
 
         /* Notificação de cópia */
@@ -924,6 +942,10 @@
                 <a href="https://www.linkedin.com/in/salomão-zaqueu-langa" target="_blank" class="btn btn-outline">
                     <i class="fab fa-linkedin"></i> LinkedIn
                 </a>
+                <!-- Botão do currículo na primeira página -->
+                <a href="Salomao_Langa_CV.pdf" download class="btn btn-outline" style="border-color: #10b981; color: #10b981;">
+                    <i class="fas fa-file-pdf"></i> Currículo
+                </a>
             </div>
         </div>
         <div class="hero-image">
@@ -1070,11 +1092,15 @@
     <div class="section-container">
         <h2 class="section-title">Entre em Contacto</h2>
         <div class="contact-info">
-            <div class="contact-card" onclick="copyToClipboard('+258843257305')">
+            <!-- Cartão de Telefone com chamada direta e opção de cópia -->
+            <div class="contact-card" onclick="window.location.href='tel:+258843257305'">
                 <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
                 <h3>Telefone</h3>
-                <p>+258 843257305</p>
-                <small style="color: #38bdf8; font-size: 0.8rem;">Clique para copiar</small>
+                <div class="phone-row">
+                    <p>+258 843257305</p>
+                    <i class="fas fa-copy copy-icon" onclick="event.stopPropagation(); copyToClipboard('+258843257305')" title="Copiar número"></i>
+                </div>
+                <small style="color: #38bdf8; font-size: 0.8rem;">Clique para ligar</small>
             </div>
             <div class="contact-card" onclick="copyToClipboard('salomon.lang91@gmail.com')">
                 <div class="contact-icon"><i class="fas fa-envelope"></i></div>
@@ -1096,6 +1122,13 @@
                     Salomão Zaqueu Langa
                 </a>
             </div>
+            <!-- Card para download do currículo -->
+            <a href="Salomao_Langa_CV.pdf" download class="contact-card" style="text-decoration: none; color: inherit;">
+                <div class="contact-icon"><i class="fas fa-file-pdf"></i></div>
+                <h3>Currículo</h3>
+                <p>Download PDF</p>
+                <small style="color: #38bdf8; font-size: 0.8rem;">Clique para baixar</small>
+            </a>
         </div>
 
         <!-- GitHub Stats Section -->
@@ -1268,7 +1301,7 @@
         hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
     });
 
-    // Skill cards hover effect with sound (optional, remove if not needed)
+    // Skill cards hover effect
     const skillCards = document.querySelectorAll('.skill-card');
     skillCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
